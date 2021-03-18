@@ -11,11 +11,12 @@
 	<groupId>com.github.xiaotong</groupId>
 	<artifactId>college-selection</artifactId>
 	<version>1.0</version>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 	<name>college-selection</name>
 	<description>College selection backend project</description>
 
 	<properties>
+		<skipTests>true</skipTests>
 		<java.version>1.8</java.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -24,17 +25,17 @@
 
 	<dependencies>
 		<!-- 如果需要使用数据库，把该项开启 -->
-		<!-- <dependency>
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-jdbc</artifactId>
-		</dependency> -->
+		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.mybatis.spring.boot/mybatis-spring-boot-starter -->
 		<!-- 如果需要使用数据库，把该项开启 -->
-		<!-- <dependency>
+		 <dependency>
 			<groupId>org.mybatis.spring.boot</groupId>
 			<artifactId>mybatis-spring-boot-starter</artifactId>
 			<version>2.1.4</version>
-		</dependency> -->
+		</dependency> 
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
@@ -114,6 +115,12 @@
 			<groupId>com.github.dozermapper</groupId>
 			<artifactId>dozer-spring4</artifactId>
 			<version>6.5.0</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/log4j/log4j -->
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.17</version>
 		</dependency>
 	</dependencies>
 

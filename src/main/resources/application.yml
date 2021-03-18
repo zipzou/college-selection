@@ -1,1 +1,19 @@
+mybatis:
+    type-aliases-package: com.github.xiaotong.collegeselection.dao.mapper
 
+spring:
+    datasource:
+        url: jdbc:mysql://118.31.64.3:3306/college?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8&useSSL=true
+        username: lxt
+        password: lxt990302
+        driver-class-name: com.mysql.cj.jdbc.Driver
+    jpa:
+        show-sql: true
+logging:
+    level:
+        com:
+            github:
+                xiaotong:
+                    collegeselection:
+                        dao:
+                            mapper: debug

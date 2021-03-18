@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 /**
  * 返回给前端的实体包裹对象
@@ -12,10 +13,12 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
 public class ResponseData<T> {
   private boolean success=true;
   private String reason;
   private String message;
+  private int code;
   private T data;
   /**
    * 产生一个带有返回数据及失败原因的响应数据
@@ -29,6 +32,7 @@ public class ResponseData<T> {
     res.data = data;
     res.success = false;
     res.message = reason;
+    res.code=400;
     return res;
   }
 
@@ -42,6 +46,7 @@ public class ResponseData<T> {
     res.data = null;
     res.success = false;
     res.message = reason;
+    res.code=400;
     return res;
   }
 
@@ -55,6 +60,7 @@ public class ResponseData<T> {
     ResponseData<T> res = new ResponseData<T>();
     res.data = data;
     res.success = true;
+    res.code=200;
     return res;
   }
 
@@ -70,6 +76,7 @@ public class ResponseData<T> {
     res.data = data;
     res.success = true;
     res.message = message;
+    res.code = 200;
     return res;
   }
 
@@ -78,9 +85,10 @@ public class ResponseData<T> {
    * @param message 请求执行后的信息
    * @return 请求成功的响应实体
    */
-  public static ResponseData<Object> success(String message) {
+  public static ResponseData<Object> successF(String message) {
     ResponseData<Object> res = new ResponseData<Object>();
     res.success = true;
+    res.code = 201; // 网络请求正常，但是无数据，业务错误。
     res.message = message;
     return res;
   }
@@ -92,6 +100,18 @@ public class ResponseData<T> {
   public static ResponseData<Object> success() {
     ResponseData<Object> res = new ResponseData<Object>();
     res.success = true;
+    return res;
+  }
+
+  /**
+   * 产生一个含有返回成功信息的请求响应实体
+   * @return 请求成功的响应实体
+   */
+  public static ResponseData<Object> successMes(String message) {
+    ResponseData<Object> res = new ResponseData<Object>();
+    res.success = true;
+    res.code = 200; // 网络请求正常，数据正常。
+    res.message = message;
     return res;
   }
 }
