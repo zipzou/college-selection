@@ -3,6 +3,7 @@ package com.github.xiaotong.collegeselection.dao.mapper;
 import java.util.List;
 
 import com.github.xiaotong.collegeselection.dao.bean.CategoryListBean;
+import com.github.xiaotong.collegeselection.dao.bean.MajorListBean;
 import com.github.xiaotong.collegeselection.dao.bean.SubCategoryListBean;
 import com.github.xiaotong.collegeselection.dao.bean.ViewMajorsInfoBean;
 
@@ -11,6 +12,8 @@ import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.ResultMap;
 import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
+
+import lombok.experimental.PackagePrivate;
 
 /**
  * 专业介绍视图
@@ -52,6 +55,18 @@ public interface ViewMajorsInfoDao {
         }
     )
     public List<CategoryListBean> getCategoryListByID(@Param("subCode") Short subCode);
+
+    /**
+     * 根据学科门类和专业类别得到专业列表
+     */
+    @Select("select m_name,m_code from view_majors_info where sub_code = #{subCode} and m_category_code = #{mCateCode}")
+    @Results(
+        {
+            @Result(column = "m_code", property = "majorCode"),
+            @Result(column = "m_name", property = "majorName")
+        }
+    )
+    public List<MajorListBean> getMajorList(@Param("subCode")Short subCode,@Param("mCateCode") Short mCateCode);
 
     //根据学科门类类别id和专业类别id以及专业id得到专业信息
     @Select("select * from view_majors_info where sub_code = #{subCode} and m_category_code = #{mCateCode} and m_code = #{mCode};")

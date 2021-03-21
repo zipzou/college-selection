@@ -126,6 +126,16 @@ public class CollegeIntroductionController {
   }
 
   /**
+   * 通过学科门类、专业类别得到专业列表
+   */
+  @GetMapping("/majorsList/{subCode}/{mCateCode}")
+  public ResponseData<Object> getMajorList(@PathVariable Short subCode,@PathVariable Short mCateCode)
+  {
+    ResponseData<Object> results = majorsService.getMajorsListByID(subCode, mCateCode);
+    return results;
+  }
+
+  /**
    * 通过学科门类、专业类别、专业id得到特定专业
    * 
    * @param subcode

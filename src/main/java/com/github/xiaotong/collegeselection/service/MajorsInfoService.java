@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.github.xiaotong.collegeselection.body.ResponseData;
 import com.github.xiaotong.collegeselection.dao.bean.CategoryListBean;
+import com.github.xiaotong.collegeselection.dao.bean.MajorListBean;
 import com.github.xiaotong.collegeselection.dao.bean.MajorsHotBean;
 import com.github.xiaotong.collegeselection.dao.bean.SubCategoryListBean;
 import com.github.xiaotong.collegeselection.dao.bean.ViewMajorsInfoBean;
@@ -43,6 +44,21 @@ public class MajorsInfoService {
         List<CategoryListBean> results = dao.getCategoryListByID(code);
         if(results.isEmpty()){
             return ResponseData.successF("学科门类id："+code+"错误！");
+        } else{
+            return ResponseData.success(results);
+        }
+    }
+
+    /**
+     * 通过学科门类id、专业类别id得到专业列表
+     * @param subCode
+     * @param mCateCode
+     * @return
+     */
+    public ResponseData<Object> getMajorsListByID(Short subCode,Short mCateCode) {
+        List<MajorListBean> results = dao.getMajorList(subCode, mCateCode);
+        if(results.isEmpty()){
+            return ResponseData.successF("学科门类id："+subCode+"专业类别id："+mCateCode+"错误！");
         } else{
             return ResponseData.success(results);
         }
