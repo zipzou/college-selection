@@ -13,7 +13,6 @@ import org.apache.ibatis.annotations.ResultMap;
 import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
 
-import lombok.experimental.PackagePrivate;
 
 /**
  * 专业介绍视图
@@ -34,6 +33,15 @@ public interface ViewMajorsInfoDao {
         }
     )
     public List<ViewMajorsInfoBean> getAll();
+
+    /**
+     * 根据专业id得到专业信息
+     * @param mCode
+     * @return
+     */
+    @Select("select * from view_majors_info where m_code = #{mCode};")
+    @ResultMap(value = "viewMajors")
+    public ViewMajorsInfoBean getAnMajorByCode(@Param("mCode") String mCode);
 
     //得到类别列表
     @Select("select distinct sub_code,sub_name from view_majors_info;")

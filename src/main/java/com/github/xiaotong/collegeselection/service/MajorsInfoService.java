@@ -99,4 +99,19 @@ public class MajorsInfoService {
         List<MajorsHotBean> results = majorsDao.getMajorsHot();
         return results;
     }
+
+    /**
+     * 用专业id得到具体的专业信息
+     * @param mCode
+     * @return
+     */
+    public ResponseData<Object> getAnMajorByID(String mCode)
+    {
+        ViewMajorsInfoBean results = dao.getAnMajorByCode(mCode);
+        if(null == results){
+            return ResponseData.successF("专业代码："+mCode+"错误！");
+        } else{
+            return ResponseData.success(results);
+        }
+    }
 }

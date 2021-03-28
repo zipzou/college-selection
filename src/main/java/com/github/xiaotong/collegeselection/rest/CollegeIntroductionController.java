@@ -150,6 +150,19 @@ public class CollegeIntroductionController {
     return results;
   }
 
+  
+   /**
+    * 通过专业id获取专业信息
+    * @param mCode
+    * @return
+    */
+  @GetMapping("/an_major/{mCode}")
+  public ResponseData<Object> getAnMajorByID(@PathVariable String mCode)
+  {
+    ResponseData<Object> results = majorsService.getAnMajorByID(mCode);
+    return results;
+  }
+  
   /**
    * 得到所有省份的历年分数线
    */
