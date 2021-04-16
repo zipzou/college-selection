@@ -23,13 +23,10 @@ public interface ViewEnrollInfoDao {
             @Result(column = "university_id", property = "universityID"),
             @Result(column = "university_name", property = "universityName"),
             @Result(column = "plan_category", property = "planCategory"),
-            @Result(column = "major_code", property = "majorCode"),
-            @Result(column = "major_name", property = "majorName"),
             @Result(column = "numbers", property = "numbers"),
-            @Result(column = "max_score", property = "maxScore"),
             @Result(column = "min_score", property = "minScore"),
             @Result(column = "avg_score", property = "avgScore"),
-            @Result(column = "max_ranking", property = "maxRanking"),
+            @Result(column = "avg_ranking", property = "avgRanking"),
             @Result(column = "min_ranking", property = "minRanking")
         }
     )

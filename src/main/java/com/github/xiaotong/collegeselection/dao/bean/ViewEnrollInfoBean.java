@@ -21,12 +21,9 @@ public class ViewEnrollInfoBean {
     private Integer universityID;
     private String universityName;
     private String planCategory;
-    private String majorCode;
-    private String majorName;
     private Short numbers;
-    private Integer maxScore;
     private Integer minScore;
     private Integer avgScore;
-    private Short maxRanking;
-    private Short minRanking;
+    private Long avgRanking;
+    private Long minRanking;
 }

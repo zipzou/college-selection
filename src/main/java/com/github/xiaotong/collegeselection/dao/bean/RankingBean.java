@@ -7,21 +7,14 @@ import lombok.Setter;
 import lombok.ToString;
 
 /**
- * 历年录取情况
+ * 录取位次
  */
 @AllArgsConstructor
 @NoArgsConstructor
 @Setter
 @Getter
 @ToString
-public class EnrollInfoBean {
-    private String provinceNo;
-    private Short years;
-    private Integer universityID;
-    private String planCategory;
-    private Short numbers;
-    private Integer minScore;
-    private Integer avgScore;
+public class RankingBean {
     private Long avgRanking;
     private Long minRanking;
 }

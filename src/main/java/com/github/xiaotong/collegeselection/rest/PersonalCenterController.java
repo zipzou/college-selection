@@ -57,6 +57,18 @@ public class PersonalCenterController {
     }
 
     /**
+     * 获得志愿填报
+     * @param userNo
+     * @param mark
+     * @return
+     */
+    @GetMapping("/report_collection/{userNo}/{mark}")
+    public ResponseData<Object> getReportCollection(@PathVariable String userNo,@PathVariable String mark)
+    {
+        ResponseData<Object> results = service.getReportCollect(userNo, mark);
+        return results;
+    }
+    /**
      * 往数据库插入新收藏
      * @param collect
      * @return

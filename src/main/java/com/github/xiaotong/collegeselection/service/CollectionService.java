@@ -5,10 +5,12 @@ import java.util.List;
 import com.github.xiaotong.collegeselection.body.ResponseData;
 import com.github.xiaotong.collegeselection.dao.bean.CollectionCollegeBean;
 import com.github.xiaotong.collegeselection.dao.bean.CollectionMajorBean;
+import com.github.xiaotong.collegeselection.dao.bean.CollectionReportBean;
 import com.github.xiaotong.collegeselection.dao.bean.CollectionVideoBean;
 import com.github.xiaotong.collegeselection.dao.mapper.CollectCollegeDao;
 import com.github.xiaotong.collegeselection.dao.mapper.CollectVideoDao;
 import com.github.xiaotong.collegeselection.dao.mapper.CollectionMajorDao;
+import com.github.xiaotong.collegeselection.dao.mapper.CollectionReportDao;
 import com.github.xiaotong.collegeselection.dao.mapper.MajorsInfoDao;
 import com.github.xiaotong.collegeselection.dao.mapper.UniversityInfoDao;
 import com.github.xiaotong.collegeselection.dao.mapper.UserInfoDao;
@@ -25,11 +27,13 @@ public class CollectionService {
     private @Autowired CollectVideoDao cvDao;
     private @Autowired CollectCollegeDao cuDao;
     private @Autowired CollectionMajorDao cmDao;
-    
+    private @Autowired CollectionReportDao reportDao;
+
     private @Autowired MajorsInfoDao majorsDao;
     private @Autowired VideosInfoDao videosDao;
     private @Autowired UniversityInfoDao universityDao;
     private @Autowired UserInfoDao userDao;
+   
     /**
      * 返回专业收藏
      * @param id
@@ -74,6 +78,25 @@ public class CollectionService {
         if(results.isEmpty())
         {
             return ResponseData.successF("该用户id："+id+"下不存在视频收藏！");
+        }
+        else
+        {
+            return ResponseData.success(results);
+        }
+    }
+
+    /**
+     * 获得志愿填报
+     * @param userNo
+     * @param mark
+     * @return
+     */
+    public ResponseData<Object> getReportCollect(String userNo,String mark)
+    {
+        List<CollectionReportBean> results = reportDao.getReportCollection(userNo, mark);
+        if(results.isEmpty())
+        {
+            return ResponseData.successF("该用户："+userNo+mark+"下没有数据！");
         }
         else
         {
@@ -270,7 +293,7 @@ public class CollectionService {
     private Boolean checkUser(String userNo)
     {
         //用户存在
-        if(null != userDao.getAnUser(userNo))
+        if(!userDao.getAnUser(userNo).isEmpty())
         {
             return true;
         }
@@ -326,5 +349,5 @@ public class CollectionService {
             return false;
         }
         return true;
-    }
+    } 
 }
