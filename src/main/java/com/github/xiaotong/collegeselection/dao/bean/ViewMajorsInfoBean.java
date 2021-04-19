@@ -24,5 +24,7 @@ public class ViewMajorsInfoBean {
     private String mRequ;
     private String subName;
     private short subCode;
-
+    private String mGoal;
+    private String mIntro;
+    private String mClass;
 }

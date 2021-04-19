@@ -29,7 +29,10 @@ public interface ViewMajorsInfoDao {
             @Result(column = "m_category_name", property = "mCategoryName"),
             @Result(column = "m_requ", property = "mRequ"),
             @Result(column = "sub_name", property = "subName"),
-            @Result(column = "sub_code", property = "subCode")
+            @Result(column = "sub_code", property = "subCode"),
+            @Result(column = "m_intro", property = "mIntro"),
+            @Result(column = "m_goal", property = "mGoal"),
+            @Result(column = "m_class", property = "mClass")
         }
     )
     public List<ViewMajorsInfoBean> getAll();
