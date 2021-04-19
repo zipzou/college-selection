@@ -38,7 +38,7 @@ public class AlgorithmController {
         else if(planCate.equals("l"))//理科
         {
             planCate = "理科";
-        }
+        } 
         else if(planCate.equals("z"))//综合
         {
             planCate = "综合";
