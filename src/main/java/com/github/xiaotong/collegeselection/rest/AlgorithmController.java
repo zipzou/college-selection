@@ -31,6 +31,21 @@ public class AlgorithmController {
     @GetMapping("/report/{userNo}/{pNo}/{years}/{uRanking}/{planCate}/{mark}")
     public ResponseData<Object> getReport(@PathVariable String userNo,@PathVariable String pNo,@PathVariable Short years,@PathVariable Long uRanking,@PathVariable String planCate,@PathVariable String mark)
     {
+        if(planCate.equals("w"))//文科
+        {
+            planCate = "文科";
+        }
+        else if(planCate.equals("l"))//理科
+        {
+            planCate = "理科";
+        }
+        else if(planCate.equals("z"))//综合
+        {
+            planCate = "综合";
+        }
+        else{
+            return ResponseData.successF("用户高考类型错误！");
+        }
         if(null == mark)
         {
             return ResponseData.successF("列表类型为空！");
