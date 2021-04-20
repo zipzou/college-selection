@@ -3,6 +3,7 @@ package com.github.xiaotong.collegeselection.rest;
 import com.github.xiaotong.collegeselection.body.CollectParam;
 import com.github.xiaotong.collegeselection.body.ResponseData;
 import com.github.xiaotong.collegeselection.service.CollectionService;
+import com.github.xiaotong.collegeselection.service.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.extern.log4j.Log4j;
@@ -22,13 +24,26 @@ import lombok.extern.log4j.Log4j;
 @RequestMapping("/user")
 public class PersonalCenterController {
     private @Autowired CollectionService service;
+    private @Autowired UserService userService;
+
+    /**
+     * 插入新用户
+     * @param nickname
+     * @return
+     */
+    @PostMapping("/new")
+    public ResponseData<Object> insertNewUser(@RequestParam String nickname){
+        ResponseData<Object> results = userService.InsertUser(nickname);
+        return results;
+    }
+
     /**
      * 大学收藏
      * @param id
      * @return
      */
     @GetMapping("/collection_college/{id}")
-    public ResponseData<Object> getCollegeCollection(@PathVariable String id) {
+    public ResponseData<Object> getCollegeCollection(@PathVariable Long id) {
         ResponseData<Object> results = service.getCollegeCollection(id);
         log.info(results);
         return results;
@@ -38,7 +53,7 @@ public class PersonalCenterController {
      * 得到专业收藏
      */
     @GetMapping("/collection_major/{id}")
-    public ResponseData<Object> getMajorCollection(@PathVariable String id) {
+    public ResponseData<Object> getMajorCollection(@PathVariable Long id) {
         ResponseData<Object> results = service.getMajorsCollection(id);
         log.info(results);
         return results;
@@ -50,7 +65,7 @@ public class PersonalCenterController {
      * @return
      */
     @GetMapping("/collection_video/{id}")
-    public ResponseData<Object> getVideoCollection(@PathVariable String id) {
+    public ResponseData<Object> getVideoCollection(@PathVariable Long id) {
         ResponseData<Object> results = service.getVideoCollection(id);
         log.info(results);
         return results;
@@ -63,7 +78,7 @@ public class PersonalCenterController {
      * @return
      */
     @GetMapping("/report_collection/{userNo}/{mark}")
-    public ResponseData<Object> getReportCollection(@PathVariable String userNo,@PathVariable String mark)
+    public ResponseData<Object> getReportCollection(@PathVariable Long userNo,@PathVariable String mark)
     {
         ResponseData<Object> results = service.getReportCollect(userNo, mark);
         return results;
@@ -76,7 +91,7 @@ public class PersonalCenterController {
     @PostMapping("/collect")
     public ResponseData<Object> updateCollectData(@RequestBody CollectParam collect)
     {
-        String userNo = collect.getUserNo();
+        Long userNo = collect.getUserNo();
         String code = collect.getCode();
         String mark = collect.getMark();
         if(!code.isEmpty())
@@ -111,7 +126,7 @@ public class PersonalCenterController {
     @PostMapping("/delete_collect")
     public ResponseData<Object> deleteCollectData(@RequestBody CollectParam collect)
     {
-        String userNo = collect.getUserNo();
+        Long userNo = collect.getUserNo();
         String code = collect.getCode();
         String mark = collect.getMark();
         if(!code.isEmpty())

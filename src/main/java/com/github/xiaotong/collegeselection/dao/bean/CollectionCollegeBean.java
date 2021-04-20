@@ -15,7 +15,7 @@ import lombok.ToString;
 @Getter
 @ToString
 public class CollectionCollegeBean {
-    private String userNo;
+    private Long userNo;
     private Integer universityID;
     private String uName;
 }

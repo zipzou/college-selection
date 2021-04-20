@@ -15,7 +15,7 @@ import lombok.ToString;
  * 我的志愿填报
  */
 public class CollectionReportBean {
-    private String userNo;
+    private Long userNo;
     private Integer uID;
     private String uName;
     private Double ranking;

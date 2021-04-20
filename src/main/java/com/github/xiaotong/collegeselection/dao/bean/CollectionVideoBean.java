@@ -15,7 +15,7 @@ import lombok.ToString;
 @Getter
 @ToString
 public class CollectionVideoBean {
-    private String userNo;
+    private Long userNo;
     private Integer videoID; 
     private String videoTitle;
 }

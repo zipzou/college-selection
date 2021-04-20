@@ -24,20 +24,20 @@ public interface CollectVideoDao {
             @Result(column = "user_no", property = "userNo")
         }
     )
-    public List<CollectionVideoBean> getVideoCollection(@Param("userNo") String userNo);
+    public List<CollectionVideoBean> getVideoCollection(@Param("userNo") Long userNo);
 
     /**
      * 获取单个收藏
      */
     @Select("select * from collection_video where user_no = #{userNo} and video_id = #{videoID};")
     @ResultMap(value = "videoCollection")
-    public CollectionVideoBean getAnVideoCollection(@Param("userNo") String userNo,@Param("videoID") Integer videoID);
+    public CollectionVideoBean getAnVideoCollection(@Param("userNo") Long userNo,@Param("videoID") Integer videoID);
     
     /**
      * 插入个人视频收藏
      */
     @Insert("INSERT into collection_video(video_id,user_no) VALUES(#{videoID},#{userNo});")
-    public void insertVideoCollect(@Param("videoID") Integer videoID,@Param("userNo") String userNo);
+    public void insertVideoCollect(@Param("videoID") Integer videoID,@Param("userNo") Long userNo);
     
     /**
      * 取消个人视频收藏
@@ -45,5 +45,5 @@ public interface CollectVideoDao {
      * @param userNo
      */
     @Delete("delete from collection_video where video_id = #{videoID} and user_no = #{userNo};")
-    public void deleteVideoCollect(@Param("videoID") Integer videoID,@Param("userNo") String userNo);
+    public void deleteVideoCollect(@Param("videoID") Integer videoID,@Param("userNo") Long userNo);
 }

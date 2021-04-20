@@ -39,7 +39,7 @@ public class CollectionService {
      * @param id
      * @return
      */
-    public ResponseData<Object> getMajorsCollection(String id) {
+    public ResponseData<Object> getMajorsCollection(Long id) {
         List<CollectionMajorBean> results = cmDao.getMajorCollection(id);
         if(results.isEmpty())
         {
@@ -56,7 +56,7 @@ public class CollectionService {
      * @param id
      * @return
      */
-    public ResponseData<Object> getCollegeCollection(String id) {
+    public ResponseData<Object> getCollegeCollection(Long id) {
         List<CollectionCollegeBean> results = cuDao.getCollegeCollection(id);
         if(results.isEmpty())
         {
@@ -73,7 +73,7 @@ public class CollectionService {
      * @param id
      * @return
      */
-    public ResponseData<Object> getVideoCollection(String id) {
+    public ResponseData<Object> getVideoCollection(Long id) {
         List<CollectionVideoBean> results = cvDao.getVideoCollection(id);
         if(results.isEmpty())
         {
@@ -91,7 +91,7 @@ public class CollectionService {
      * @param mark
      * @return
      */
-    public ResponseData<Object> getReportCollect(String userNo,String mark)
+    public ResponseData<Object> getReportCollect(Long userNo,String mark)
     {
         List<CollectionReportBean> results = reportDao.getReportCollection(userNo, mark);
         if(results.isEmpty())
@@ -110,7 +110,7 @@ public class CollectionService {
      * @param userNo
      * @return
      */
-    public ResponseData<Object> insertMajorCollect(String mCode,String userNo){
+    public ResponseData<Object> insertMajorCollect(String mCode,Long userNo){
         if(checkUser(userNo)){
             if(null != majorsDao.getMajorByCode(mCode))
             {
@@ -140,7 +140,7 @@ public class CollectionService {
      * @param userNo
      * @return
      */
-    public ResponseData<Object> deleteMajorCollect(String mCode,String userNo){
+    public ResponseData<Object> deleteMajorCollect(String mCode,Long userNo){
         if(checkUser(userNo)){
             if(null != mCode)
             {
@@ -171,7 +171,7 @@ public class CollectionService {
      * @param userNo
      * @return
      */
-    public ResponseData<Object> insertVideoCollect(Integer videoID,String userNo){
+    public ResponseData<Object> insertVideoCollect(Integer videoID,Long userNo){
         if(checkUser(userNo)){
             if(null != videosDao.getAnVideo(videoID))
             {
@@ -201,7 +201,7 @@ public class CollectionService {
      * @param userNo
      * @return
      */
-    public ResponseData<Object> deleteVideoCollect(Integer videoID,String userNo){
+    public ResponseData<Object> deleteVideoCollect(Integer videoID,Long userNo){
         if(checkUser(userNo)){
             if(null != videoID)
             {
@@ -231,7 +231,7 @@ public class CollectionService {
      * @param userNo
      * @return
      */
-    public ResponseData<Object> insertCollegeCollect(Integer universityID,String userNo){
+    public ResponseData<Object> insertCollegeCollect(Integer universityID,Long userNo){
         if(checkUser(userNo)){
             if(null!= universityDao.selectAllByID(universityID))
             {
@@ -261,7 +261,7 @@ public class CollectionService {
      * @param userNo
      * @return
      */
-    public ResponseData<Object> deleteCollegeCollect(Integer universityID,String userNo){
+    public ResponseData<Object> deleteCollegeCollect(Integer universityID,Long userNo){
         if(checkUser(userNo)){
             if(null != universityID)
             {
@@ -290,7 +290,7 @@ public class CollectionService {
      * @param userNo
      * @return
      */
-    private Boolean checkUser(String userNo)
+    private Boolean checkUser(Long userNo)
     {
         //用户存在
         if(!userDao.getAnUser(userNo).isEmpty())
@@ -309,7 +309,7 @@ public class CollectionService {
      * @param videoID
      * @return
      */
-    private Boolean checkVideoCollection(String userNo,Integer videoID)
+    private Boolean checkVideoCollection(Long userNo,Integer videoID)
     {
         CollectionVideoBean anVideoCollection = cvDao.getAnVideoCollection(userNo, videoID);
         if(null == anVideoCollection)//不存在该视频收藏
@@ -325,7 +325,7 @@ public class CollectionService {
      * @param mCode
      * @return
      */
-    private Boolean checkMajorCollection(String userNo,String mCode)
+    private Boolean checkMajorCollection(Long userNo,String mCode)
     {
         CollectionMajorBean anMajorCollection = cmDao.getAnMajorCollection(mCode, userNo);
         if(null == anMajorCollection)//不存在该专业收藏
@@ -341,7 +341,7 @@ public class CollectionService {
      * @param universityID
      * @return
      */
-    private Boolean checkCollegeCollection(String userNo,Integer universityID)
+    private Boolean checkCollegeCollection(Long userNo,Integer universityID)
     {
         CollectionCollegeBean anCollegeCollection = cuDao.getAnCollegeCollection(userNo, universityID);
         if(null == anCollegeCollection)//不存在该大学的收藏

@@ -29,7 +29,7 @@ public class AlgorithmController {
      * @return
      */
     @GetMapping("/report/{userNo}/{pNo}/{years}/{uRanking}/{planCate}/{mark}")
-    public ResponseData<Object> getReport(@PathVariable String userNo,@PathVariable String pNo,@PathVariable Short years,@PathVariable Long uRanking,@PathVariable String planCate,@PathVariable String mark)
+    public ResponseData<Object> getReport(@PathVariable Long userNo,@PathVariable String pNo,@PathVariable Short years,@PathVariable Long uRanking,@PathVariable String planCate,@PathVariable String mark)
     {
         if(planCate.equals("w"))//文科
         {

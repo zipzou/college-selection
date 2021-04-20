@@ -24,7 +24,7 @@ public interface CollectionMajorDao {
             @Result(column = "major_name", property = "mName"),
         }
     )
-    public List<CollectionMajorBean> getMajorCollection(@Param("userNo") String userNo);
+    public List<CollectionMajorBean> getMajorCollection(@Param("userNo") Long userNo);
 
     /**
      * 获得单独的一个收藏
@@ -34,13 +34,13 @@ public interface CollectionMajorDao {
      */
     @Select("select * from collection_major where major_code = #{majorCode} and user_no = #{userNo};")
     @ResultMap(value = "majorCollection")
-    public CollectionMajorBean getAnMajorCollection(@Param("majorCode") String majorCode,@Param("userNo") String userNo);
+    public CollectionMajorBean getAnMajorCollection(@Param("majorCode") String majorCode,@Param("userNo") Long userNo);
     
     /**
      * 插入个人专业收藏
      */
     @Insert("INSERT into collection_major(major_code,user_no) VALUES(#{majorCode},#{userNo});")
-    public void insertMajorCollect(@Param("majorCode") String majorCode,@Param("userNo") String userNo);
+    public void insertMajorCollect(@Param("majorCode") String majorCode,@Param("userNo") Long userNo);
 
     /**
      * 取消个人专业收藏
@@ -48,5 +48,5 @@ public interface CollectionMajorDao {
      * @param userNo
      */
     @Delete("delete from collection_major where major_code = #{majorCode} and user_no = #{userNo};")
-    public void deleteMajorCollect(@Param("majorCode") String majorCode,@Param("userNo") String userNo);
+    public void deleteMajorCollect(@Param("majorCode") String majorCode,@Param("userNo") Long userNo);
 }

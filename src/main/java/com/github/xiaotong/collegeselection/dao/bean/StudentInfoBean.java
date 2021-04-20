@@ -18,7 +18,7 @@ import lombok.ToString;
 @ToString
 public class StudentInfoBean {
     private String stuNo;
-    private String userNo;
+    private Long userNo;
     private String studentName;
     private String mobile;
     private String provinceNo;

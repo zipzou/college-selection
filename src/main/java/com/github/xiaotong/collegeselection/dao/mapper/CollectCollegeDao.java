@@ -24,7 +24,7 @@ public interface CollectCollegeDao {
             @Result(column = "university_name", property = "uName"),
         }
     )
-    public List<CollectionCollegeBean> getCollegeCollection(@Param("userNo") String userNo);
+    public List<CollectionCollegeBean> getCollegeCollection(@Param("userNo") Long userNo);
 
     /**
      * 获得指定用户指定大学的收藏
@@ -34,13 +34,13 @@ public interface CollectCollegeDao {
      */
     @Select("select * from collection_college where university_id = #{universityID} and user_no = #{userNo};")
     @ResultMap(value = "uCollection")
-    public CollectionCollegeBean getAnCollegeCollection(@Param("userNo") String userNo,@Param("universityID") Integer universityID);
+    public CollectionCollegeBean getAnCollegeCollection(@Param("userNo") Long userNo,@Param("universityID") Integer universityID);
     
     /**
      * 添加个人大学收藏
      */
     @Insert("INSERT into collection_college(university_id,user_no) VALUES(#{universityID},#{userNo});")
-    public void insertCollegeCollect(@Param("universityID") Integer universityID,@Param("userNo") String userNo);
+    public void insertCollegeCollect(@Param("universityID") Integer universityID,@Param("userNo") Long userNo);
     
     /**
      * 删除个人大学收藏
@@ -48,5 +48,5 @@ public interface CollectCollegeDao {
      * @param userNo
      */
     @Delete("delete from collection_college where university_id = #{universityID} and user_no = #{userNo};")
-    public void deleteCollegeCollect(@Param("universityID") Integer universityID,@Param("userNo") String userNo);
+    public void deleteCollegeCollect(@Param("universityID") Integer universityID,@Param("userNo") Long userNo);
 }

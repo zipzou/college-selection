@@ -36,7 +36,7 @@ public class SelectAlgorithm {
      * @param uRanking
      * @return
      */
-    public ResponseData<Object> getCRankList(String userNo,String pNo,Short years,Long uRanking,String planCate)
+    public ResponseData<Object> getCRankList(Long userNo,String pNo,Short years,Long uRanking,String planCate)
     {
         Boolean results;
         if(!checkUser(userNo))//用户不存在
@@ -93,7 +93,7 @@ public class SelectAlgorithm {
      * @param uRanking
      * @return
      */
-    public ResponseData<Object> getWRankList(String userNo,String pNo,Short years,Long uRanking,String planCate)
+    public ResponseData<Object> getWRankList(Long userNo,String pNo,Short years,Long uRanking,String planCate)
     {
         Boolean results = false;
         if(!checkUser(userNo))//用户不存在
@@ -150,7 +150,7 @@ public class SelectAlgorithm {
      * @param uRanking
      * @return
      */
-    public ResponseData<Object> getBRankList(String userNo,String pNo,Short years,Long uRanking,String planCate)
+    public ResponseData<Object> getBRankList(Long userNo,String pNo,Short years,Long uRanking,String planCate)
     {
         Boolean results = false;
         if(!checkUser(userNo))//用户不存在
@@ -323,7 +323,7 @@ public class SelectAlgorithm {
      * @param userNo
      * @return
      */
-    private Boolean insertUserRanking(String userNo)
+    private Boolean insertUserRanking(Long userNo)
     {
         if(checkUserReport(userNo))//如果数据库已经有了，那就不插入
         {
@@ -359,7 +359,7 @@ public class SelectAlgorithm {
      * @param userNo
      * @return
      */
-    private Boolean checkUserReport(String userNo)
+    private Boolean checkUserReport(Long userNo)
     {
         String checkUserReport = reportDao.CheckUserReport(userNo);
         if(null == checkUserReport)
@@ -374,7 +374,7 @@ public class SelectAlgorithm {
      * @param userNo
      * @return
      */
-    private Boolean checkUser(String userNo)
+    private Boolean checkUser(Long userNo)
     {
         //用户存在
         if(!userDao.getAnUser(userNo).isEmpty())

@@ -18,7 +18,7 @@ import lombok.ToString;
 @ToString
 public class VIPInfoBean {
     private String cardNo;
-    private String userNo;
+    private Long userNo;
     private Date vipStart;
     private Date vipTime;
 }

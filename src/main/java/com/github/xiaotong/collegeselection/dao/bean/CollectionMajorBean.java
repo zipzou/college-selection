@@ -16,6 +16,6 @@ import lombok.ToString;
 @ToString
 public class CollectionMajorBean {
     private String majorCode;
-    private String userNo;
+    private Long userNo;
     private String mName;
 }

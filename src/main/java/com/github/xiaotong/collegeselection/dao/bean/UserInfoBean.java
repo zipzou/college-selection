@@ -15,7 +15,7 @@ import lombok.ToString;
 @Getter
 @ToString
 public class UserInfoBean {
-    private String userNo;
+    private Long userNo;
     private Boolean ifVIP;
     private String nickName;
 }
